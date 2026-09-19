@@ -1,17 +1,17 @@
 <section id="contact" class="w-full py-12 border-t border-[#ffffff10]">
   <div class="max-w-5xl mx-auto">
-    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">Let's talk</h2>
+    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">Parlons-en</h2>
     <h3 class="text-4xl md:text-5xl font-medium text-[var(--white)] mb-6">
-      Contact
+      Contactez-moi
     </h3>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div class="text-[var(--white-icon)]">
         <p class="mb-4">
-          Have a website project in mind? Send me a message and I will get back
-          to you.
+          Vous avez un projet de site web en tête ? Envoyez-moi un message et je
+          vous répondrai rapidement.
         </p>
         <div class="flex items-center gap-2">
-          <span>Email:</span>
+          <span>E-mail :</span>
           <a
             class="text-[var(--white)] hover:text-[var(--sec)] transition-colors"
             href="mailto:naoufalworking@gmail.com"
@@ -29,20 +29,20 @@
           <input
             type="text"
             name="from_name"
-            placeholder="Name"
+            placeholder="Nom"
             required
             class="px-4 py-2 bg-[#1414149c] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
           />
           <input
             type="email"
             name="reply_to"
-            placeholder="Email"
+            placeholder="E-mail"
             required
             class="px-4 py-2 bg-[#1414149c] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)]"
           />
           <textarea
             name="message"
-            placeholder="Message"
+            placeholder="Votre message"
             rows="6"
             required
             class="px-4 py-2 bg-[#1414149c] text-[var(--white)] border border-[var(--white-icon-tr)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--sec)] resize-none"
@@ -51,14 +51,14 @@
             type="submit"
             class="px-4 py-2 bg-[var(--white-icon-tr)] text-[var(--white)] rounded-lg opacity-60 transition-opacity border border-[var(--white-icon-tr)] hover:opacity-100 hover:bg-[var(--white-icon-tr)]"
           >
-            Submit
+            Envoyer
           </button>
         </form>
         <div
           id="form-message"
           class="hidden justify-center items-center mt-4 text-[var(--white)] text-lg"
         >
-          ✅ Thank you for your message!
+          Merci pour votre message !
         </div>
       </div>
     </div>
@@ -86,11 +86,11 @@
       } else {
         const data = await response.json();
         console.error("Error response:", data);
-        alert("There was a problem sending your message.");
+        alert("Un problème est survenu lors de l’envoi de votre message.");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("There was a problem sending your message.");
+      alert("Un problème est survenu lors de l’envoi de votre message.");
     }
   });
 </script>

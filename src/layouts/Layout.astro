@@ -9,8 +9,8 @@ interface Props {
 
 const {
   title,
-  description = "Naoufal Laamouri - Web Designer and Developer in Morocco creating responsive websites for businesses and clients.",
-  locale = "en",
+  description = "Naoufal Laamouri - Créateur et développeur web au Maroc pour des sites responsives destinés aux entreprises et aux clients.",
+  locale = "fr",
   dir = "ltr",
   path = "/",
 } = Astro.props;
@@ -18,8 +18,7 @@ const siteUrl = "https://naoufallaamouri.netlify.app";
 const canonical = new URL(path, siteUrl).toString();
 const socialImage = `${siteUrl}/og/naoufal-laamouri-portfolio-v2.jpg`;
 const locales = [
-  ["en", "/"],
-  ["fr", "/fr/"],
+  ["fr", "/"],
   ["ar", "/ar/"],
   ["ar-MA", "/darija/"],
   ["ar-Latn-MA", "/darija-latn/"],
