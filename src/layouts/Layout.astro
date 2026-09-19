@@ -1,0 +1,163 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  locale?: string;
+  dir?: "ltr" | "rtl";
+  path?: string;
+}
+
+const {
+  title,
+  description = "Naoufal Laamouri - Web Designer and Developer in Morocco creating responsive websites for businesses and clients.",
+  locale = "en",
+  dir = "ltr",
+  path = "/",
+} = Astro.props;
+const siteUrl = "https://naoufallaamouri.netlify.app";
+const canonical = new URL(path, siteUrl).toString();
+const socialImage = `${siteUrl}/og/naoufal-laamouri-portfolio-v2.jpg`;
+const locales = [
+  ["en", "/"],
+  ["fr", "/fr/"],
+  ["ar", "/ar/"],
+  ["ar-MA", "/darija/"],
+  ["ar-Latn-MA", "/darija-latn/"],
+] as const;
+---
+
+<!doctype html>
+<html lang={locale} dir={dir}>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta
+      name="description"
+      content={description}
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="canonical" href={canonical} />
+    {locales.map(([hreflang, href]) => <link rel="alternate" hreflang={hreflang} href={new URL(href, siteUrl).toString()} />)}
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+
+    <link
+      rel="preload"
+      href="/fonts/montserrat-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+
+    <meta
+      property="og:title"
+      content={title}
+    />
+    <meta
+      property="og:description"
+      content={description}
+    />
+    <meta
+      property="og:image"
+      content={socialImage}
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Naoufal Laamouri — Web Designer & Developer in Morocco" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:site_name"
+      content="Naoufal Laamouri"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content="Naoufal Laamouri — Web Designer & Developer in Morocco" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Naoufal Laamouri",
+        "alternateName": "Naoufal Laamouri",
+        "url": "https://naoufallaamouri.netlify.app/",
+        "image": "https://naoufallaamouri.netlify.app/og/naoufal-laamouri-portfolio-v2.jpg",
+        "sameAs": [
+          "https://github.com/Themanonly",
+          "https://www.linkedin.com/in/themannaoufallaamouri/"
+        ],
+        "jobTitle": "Web Designer & Developer",
+        "description": "Web Designer and Developer in Morocco creating responsive websites for businesses and clients.",
+        "email": "naoufalworking@gmail.com",
+        "areaServed": "Morocco"
+      }
+    </script>
+  </head>
+  <body class="bg-[--background] sm:px-28 lg:px-20 px-9">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @font-face {
+    font-family: "Montserrat Variable";
+    src: url("/fonts/montserrat-latin-wght-normal.woff2")
+      format("woff2-variations");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --background: #101010;
+    --sec: #a476ff;
+    --white: #dfdfdf;
+    --white-icon: #f3f3f398;
+    --white-icon-tr: #f3f3f310;
+  }
+
+  * {
+    font-family:
+      "Montserrat Variable",
+      -apple-system,
+      system-ui,
+      sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  *::selection {
+    background-color: var(--sec);
+    color: var(--background);
+  }
+
+  /* Scrollbar styles */
+
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--container);
+    border-radius: 30px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--background);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--pink);
+  }
+
+  /* Scrollbar styles for Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) var(--container);
+  }
+</style>

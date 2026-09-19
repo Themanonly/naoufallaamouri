@@ -1,0 +1,20 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import LocalizedPage from "@/components/localized-page.astro";
+const projects = [
+  { title: "Casa Beauty Lab", category: "موقع تجميل وصالون", preview: "https://casabeautylab-casablanca.netlify.app/" },
+  { title: "Coco Beauty Bar", category: "موقع تجميل وصالون", preview: "https://coco-beauty-bar-casablanca.netlify.app/" },
+  { title: "Viet Garden", category: "موقع مطعم ومقهى", preview: "https://viet-garden.netlify.app/fr" },
+  { title: "Dixvino", category: "موقع ضيافة ونبيذ", preview: "https://dixvino.netlify.app/" },
+  { title: "Furni", category: "موقع أثاث متجاوب", preview: "https://furni-naoufal.netlify.app/" },
+  { title: "Feane", category: "موقع مطعم ومقهى", preview: "https://feane-naoufal.netlify.app/" },
+  { title: "Tailstore", category: "موقع أزياء ومتجر إلكتروني", preview: "https://tailstore-naoufal.netlify.app/" },
+  { title: "Sarab", category: "موقع مطعم وتجربة طعام", preview: "https://sarab-naoufal.netlify.app/" },
+  { title: "BloomShop", category: "موقع متجر حديث", preview: "https://bloomshop-naoufal-portfolio.netlify.app/" },
+  { title: "Paredes Winery", category: "موقع مزرعة عنب وضيافة", preview: "https://paredes-winery-naoufal.netlify.app/" },
+  { title: "Margarita Fragrance", category: "موقع عطور ومتجر إلكتروني", preview: "https://margarita-naoufal.netlify.app/" },
+];
+---
+<Layout title="نوفل العموري | مصمم ومطور مواقع ويب في المغرب" description="نوفل العموري مصمم ومطور مواقع ويب في المغرب، ينشئ مواقع احترافية ومتجاوبة للشركات والمشاريع." locale="ar" dir="rtl" path="/ar/">
+  <LocalizedPage eyebrow="محفظة أعمال رقمية في المغرب" heading="تصميم وتطوير مواقع ويب احترافية" intro="أصمم وأطور مواقع واضحة ومتجاوبة تساعد الشركات والمشاريع على تقديم خدماتها بشكل موثوق على الإنترنت." projectsHeading="مشاريع مختارة" contactHeading="لنتحدث عن مشروعك" contactText="لديك فكرة أو خدمة أو مشروع تريد تقديمه عبر الإنترنت؟ أرسل لي رسالة لنبدأ الحديث." contactLabel="تواصل معي" projects={projects} />
+</Layout>

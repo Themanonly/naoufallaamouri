@@ -1,0 +1,20 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import LocalizedPage from "@/components/localized-page.astro";
+const projects = [
+  { title: "Casa Beauty Lab", category: "Site beauté et salon", preview: "https://casabeautylab-casablanca.netlify.app/" },
+  { title: "Coco Beauty Bar", category: "Site beauté et salon", preview: "https://coco-beauty-bar-casablanca.netlify.app/" },
+  { title: "Viet Garden", category: "Restaurant et café", preview: "https://viet-garden.netlify.app/fr" },
+  { title: "Dixvino", category: "Vin et hospitalité", preview: "https://dixvino.netlify.app/" },
+  { title: "Furni", category: "Site e-commerce de mobilier", preview: "https://furni-naoufal.netlify.app/" },
+  { title: "Feane", category: "Site restaurant et café", preview: "https://feane-naoufal.netlify.app/" },
+  { title: "Tailstore", category: "Site mode et e-commerce", preview: "https://tailstore-naoufal.netlify.app/" },
+  { title: "Sarab", category: "Site restaurant et gastronomie", preview: "https://sarab-naoufal.netlify.app/" },
+  { title: "BloomShop", category: "Site e-commerce moderne", preview: "https://bloomshop-naoufal-portfolio.netlify.app/" },
+  { title: "Paredes Winery", category: "Site de domaine viticole et d’hospitalité", preview: "https://paredes-winery-naoufal.netlify.app/" },
+  { title: "Margarita Fragrance", category: "Site de parfumerie et e-commerce", preview: "https://margarita-naoufal.netlify.app/" },
+];
+---
+<Layout title="Naoufal Laamouri | Créateur et développeur web au Maroc" description="Naoufal Laamouri crée des sites web responsives et professionnels pour les entreprises au Maroc." locale="fr" path="/fr/">
+  <LocalizedPage eyebrow="Portfolio web au Maroc" heading="Création de sites web modernes" intro="Je conçois et développe des sites responsives, clairs et soignés pour les entreprises et les projets qui veulent une présence en ligne crédible." projectsHeading="Projets sélectionnés" contactHeading="Parlons de votre projet" contactText="Vous avez une idée, un service ou une entreprise à présenter en ligne ? Écrivez-moi pour commencer la discussion." contactLabel="Me contacter" projects={projects} />
+</Layout>

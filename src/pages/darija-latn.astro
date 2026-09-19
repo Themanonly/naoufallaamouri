@@ -1,0 +1,20 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import LocalizedPage from "@/components/localized-page.astro";
+const projects = [
+  { title: "Casa Beauty Lab", category: "Site dyal beauté w salon", preview: "https://casabeautylab-casablanca.netlify.app/" },
+  { title: "Coco Beauty Bar", category: "Site dyal beauté w salon", preview: "https://coco-beauty-bar-casablanca.netlify.app/" },
+  { title: "Viet Garden", category: "Site dyal restaurant w café", preview: "https://viet-garden.netlify.app/fr" },
+  { title: "Dixvino", category: "Site dyal vin w hospitality", preview: "https://dixvino.netlify.app/" },
+  { title: "Furni", category: "Site responsive dyal mobilier", preview: "https://furni-naoufal.netlify.app/" },
+  { title: "Feane", category: "Site dyal restaurant w café", preview: "https://feane-naoufal.netlify.app/" },
+  { title: "Tailstore", category: "Site dyal mode w e-commerce", preview: "https://tailstore-naoufal.netlify.app/" },
+  { title: "Sarab", category: "Site dyal restaurant w gastronomie", preview: "https://sarab-naoufal.netlify.app/" },
+  { title: "BloomShop", category: "Site dyal e-commerce moderne", preview: "https://bloomshop-naoufal-portfolio.netlify.app/" },
+  { title: "Paredes Winery", category: "Site dyal winery w hospitality", preview: "https://paredes-winery-naoufal.netlify.app/" },
+  { title: "Margarita Fragrance", category: "Site dyal parfums w vente online", preview: "https://margarita-naoufal.netlify.app/" },
+];
+---
+<Layout title="Naoufal Laamouri | Design w développement dyal sites web f Morocco" description="Kansawb sites web modernes w sra3 l-charikat w l-projets f Morocco, b design wadih w responsive." locale="ar-Latn-MA" path="/darija-latn/">
+  <LocalizedPage eyebrow="Portfolio web f Morocco" heading="Kansawb sites web modernes w responsive" intro="Kan3awn l-charikat w l-projets ybano mzyan online b site wadih, sra3 w khddam mzyan f téléphone w ordinateur." projectsHeading="Projets khddamin" contactHeading="3andek projet? Nhdro 3lih" contactText="Ila 3andek fikra wla projet bghiti yban mzyan online, sifet lia message w nbdaou nhdro." contactLabel="Twasel m3aya" projects={projects} />
+</Layout>

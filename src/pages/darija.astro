@@ -1,0 +1,20 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import LocalizedPage from "@/components/localized-page.astro";
+const projects = [
+  { title: "Casa Beauty Lab", category: "موقع ديال التجميل والصالون", preview: "https://casabeautylab-casablanca.netlify.app/" },
+  { title: "Coco Beauty Bar", category: "موقع ديال التجميل والصالون", preview: "https://coco-beauty-bar-casablanca.netlify.app/" },
+  { title: "Viet Garden", category: "موقع ديال مطعم وقهوة", preview: "https://viet-garden.netlify.app/fr" },
+  { title: "Dixvino", category: "موقع ديال الضيافة والنبيذ", preview: "https://dixvino.netlify.app/" },
+  { title: "Furni", category: "موقع متجاوب ديال الأثاث", preview: "https://furni-naoufal.netlify.app/" },
+  { title: "Feane", category: "موقع ديال مطعم وقهوة", preview: "https://feane-naoufal.netlify.app/" },
+  { title: "Tailstore", category: "موقع ديال الموضة والبيع أونلاين", preview: "https://tailstore-naoufal.netlify.app/" },
+  { title: "Sarab", category: "موقع ديال المأكولات والضيافة", preview: "https://sarab-naoufal.netlify.app/" },
+  { title: "BloomShop", category: "موقع متجر حديث", preview: "https://bloomshop-naoufal-portfolio.netlify.app/" },
+  { title: "Paredes Winery", category: "موقع ديال النبيذ والضيافة", preview: "https://paredes-winery-naoufal.netlify.app/" },
+  { title: "Margarita Fragrance", category: "موقع ديال العطور والبيع أونلاين", preview: "https://margarita-naoufal.netlify.app/" },
+];
+---
+<Layout title="نوفل العموري | تصميم وتطوير المواقع فالمغرب" description="كنصاوب مواقع ويب عصرية وسريعة للشركات والمشاريع فالمغرب، بتصميم واضح ومتجاوب." locale="ar-MA" dir="rtl" path="/darija/">
+  <LocalizedPage eyebrow="بورتفوليو ديال الويب فالمغرب" heading="كنصاوب مواقع عصرية ومتجاوبة" intro="كنعاون الشركات والمشاريع يقدمو الخدمة ديالهم فموقع واضح، سريع ومزيان فالتلفون والكمبيوتر." projectsHeading="مشاريع خدامة" contactHeading="عندك مشروع؟ نهضرو عليه" contactText="إلى عندك فكرة ولا مشروع بغيتي يبان مزيان فالإنترنت، صيفط ليا رسالة ونبداو نهضرو." contactLabel="تواصل معايا" projects={projects} />
+</Layout>
