@@ -1,40 +1,36 @@
-# DarkMinimal - Free Tailwind CSS & Astro Portfolio Website Template
-#### Preview
+# Naoufal Laamouri Portfolio
 
- - [Demo](https://themewagon.github.io/dark-minimal/)
+Personal portfolio website for Naoufal Laamouri, Web Designer & Developer.
 
-#### Download
- - [Download from ThemeWagon](https://themewagon.com/themes/dark-minimal/)
+## Portfolio
 
-## Getting Started
+- Website: https://naoufallaamouri.netlify.app/
+- GitHub: https://github.com/Themanonly
+- LinkedIn: https://www.linkedin.com/in/themannaoufallaamouri/
+- Email: naoufalworking@gmail.com
 
-1. Clone Repository
-```
-git clone https://github.com/themewagon/dark-minimal.git
-```
-2. Install Dependencies
-```
-npm i
-```
-3. Run the development server:
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+corepack enable
+corepack pnpm install --frozen-lockfile
+corepack pnpm exec astro check
+corepack pnpm build
 ```
 
-## Author 
-```
-Design and code is completely written by Andres Hernandez and development team. 
-```
+## Copyright & Licensing
 
-## License
+© 2026 Naoufal Laamouri. All rights reserved.
 
- - Design and Code is Copyright &copy; <a href="https://github.com/Gothsec" target="_blank">Andres Hernandez</a>
- - Licensed cover under [MIT]
- - Distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+The original portfolio content, code, design work, custom components, copy, layout, and project presentation on this site are the intellectual property of Naoufal Laamouri. Third-party libraries, frameworks, and assets remain subject to their respective licenses.
+
+This portfolio may not be copied, redistributed, republished, or resold without written permission from Naoufal Laamouri.
+
+## Contact
+
+Naoufal Laamouri
+Web Designer & Developer
+Email: naoufalworking@gmail.com
+Portfolio: https://naoufallaamouri.netlify.app/
+GitHub: https://github.com/Themanonly
+LinkedIn: https://www.linkedin.com/in/themannaoufallaamouri/

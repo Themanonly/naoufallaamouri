@@ -1,0 +1,45 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Nav from "@/components/nav.astro";
+import Footer from "@/components/footer.astro";
+---
+
+<Layout
+  title="Copyright & Licensing | Naoufal Laamouri"
+  description="Copyright and licensing information for the portfolio of Naoufal Laamouri, Web Designer & Developer."
+  locale="en"
+  path="/copyright/"
+>
+  <Nav />
+  <main class="max-w-4xl mx-auto py-20 px-6 text-[var(--white)]">
+    <h1 class="text-4xl md:text-5xl font-medium mb-6">Copyright & Licensing</h1>
+    <div class="space-y-6 text-[var(--white-icon)] text-lg leading-relaxed">
+      <p>© 2026 Naoufal Laamouri. All rights reserved.</p>
+      <p>
+        This portfolio and its original content, custom code, layout, branding,
+        media, copy, and presentation are the intellectual property of Naoufal
+        Laamouri.
+      </p>
+      <p>
+        The published project versions presented here are customized and developed
+        by Naoufal Laamouri, and may not be copied, redistributed, republished,
+        resold, sublicensed, or presented as another person's work without written
+        permission.
+      </p>
+      <div class="rounded-2xl border border-[var(--white-icon-tr)] bg-[#1414149c] p-6">
+        <h2 class="text-2xl font-medium text-[var(--white)] mb-3">Contact</h2>
+        <ul class="space-y-2">
+          <li>Portfolio: <a class="text-[var(--sec)]" href="https://naoufallaamouri.netlify.app/">https://naoufallaamouri.netlify.app/</a></li>
+          <li>GitHub: <a class="text-[var(--sec)]" href="https://github.com/Themanonly">https://github.com/Themanonly</a></li>
+          <li>LinkedIn: <a class="text-[var(--sec)]" href="https://www.linkedin.com/in/themannaoufallaamouri/">https://www.linkedin.com/in/themannaoufallaamouri/</a></li>
+          <li>Email: <a class="text-[var(--sec)]" href="mailto:naoufalworking@gmail.com">naoufalworking@gmail.com</a></li>
+        </ul>
+      </div>
+      <p>
+        Third-party libraries, templates, frameworks, and assets remain subject to
+        their own license terms where applicable.
+      </p>
+    </div>
+  </main>
+  <Footer />
+</Layout>
