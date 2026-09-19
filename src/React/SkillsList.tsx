@@ -12,11 +12,7 @@ const CategoryIcons = {
   ),
 };
 
-interface SkillsListProps {
-  locale?: "fr" | "en";
-}
-
-const SkillsList = ({ locale = "fr" }: SkillsListProps) => {
+const SkillsList = () => {
   const [openItem, setOpenItem] = useState<string | null>(null);
 
   const skills = {
@@ -44,7 +40,7 @@ const SkillsList = ({ locale = "fr" }: SkillsListProps) => {
   return (
     <div className="text-left pt-3 md:pt-9">
       <h3 className="text-[var(--white)] text-3xl md:text-4xl font-semibold md:mb-6">
-        {locale === "en" ? "What I do?" : "Ce que je fais ?"}
+        What I do?
       </h3>
       <ul className="space-y-4 mt-4 text-lg">
         {Object.entries(skills).map(([category, items]) => (
