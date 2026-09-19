@@ -1,6 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import Nav from "@/components/nav.astro";
 import LocalizedPage from "@/components/localized-page.astro";
+import Footer from "@/components/footer.astro";
 
 const projects = [
   { title: "Casa Beauty Lab", category: "Beauty and salon website", preview: "https://casabeautylab-casablanca.netlify.app/" },
@@ -23,6 +25,7 @@ const projects = [
   locale="en"
   path="/en/"
 >
+  <Nav locale="en" />
   <LocalizedPage
     eyebrow="Web portfolio in Morocco"
     heading="Modern website design and development"
@@ -33,4 +36,5 @@ const projects = [
     contactLabel="Contact me"
     projects={projects}
   />
+  <Footer />
 </Layout>
