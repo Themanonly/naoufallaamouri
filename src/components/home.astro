@@ -2,13 +2,20 @@
 import LetterGlitch from "../React/LetterGlitch.tsx";
 import LogoWall from "../components/logoWall.astro";
 import SkillsList from "../React/SkillsList.tsx";
+
+interface Props {
+  locale?: "fr" | "en";
+}
+
+const { locale = "fr" } = Astro.props;
+const isEnglish = locale === "en";
 ---
 
 <section class="text-[var(--white)] mt-12 md:mt-0" id="home" data-section>
   <div class="max-w-5xl mx-auto space-y-8 md:py-36 pb-14">
     <div class="text-left space-y-4">
       <p class="text-md md:text-lg text-[var(--white-icon)] shiny-white">
-        Bonjour, je suis Naoufal Laamouri
+        {isEnglish ? "Hi, I'm Naoufal Laamouri" : "Bonjour, je suis Naoufal Laamouri"}
       </p>
       <div
         class="flex flex-col lg:flex-row lg:items-center space-y-4 lg:space-y-0 lg:space-x-8 md:gap-4"
@@ -16,12 +23,12 @@ import SkillsList from "../React/SkillsList.tsx";
         <h1
           class="text-[var(--white)] text-5xl md:text-6xl font-medium text-pretty leading-none"
         >
-          Designer <br /> & développeur web
+          {isEnglish ? <>Web Designer <br /> & Developer</> : <>Designer <br /> & développeur web</>}
         </h1>
         <p class="text-md md:text-2xl text-[var(--white-icon)]">
-          Je conçois et développe des sites web responsives pour les entreprises
-          et les clients, en utilisant les bons outils pour créer des expériences
-          numériques soignées.
+          {isEnglish
+            ? "I design and develop responsive websites for businesses and clients, using the right tools to create polished digital experiences."
+            : "Je conçois et développe des sites web responsives pour les entreprises et les clients, en utilisant les bons outils pour créer des expériences numériques soignées."}
         </p>
       </div>
       <div class="flex justify-start gap-2 pt-3 md:pt-6">
@@ -104,7 +111,7 @@ import SkillsList from "../React/SkillsList.tsx";
     <LogoWall />
 
     <div class="flex flex-col lg:flex-row items-center gap-8">
-      <SkillsList client:load />
+          <SkillsList client:load locale={locale} />
       <div
         class="flex justify-center md:w-full md:h-[292px] size-[290px] pt-3 md:pt-9 md:ml-16"
       >

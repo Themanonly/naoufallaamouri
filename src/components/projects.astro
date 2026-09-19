@@ -9,86 +9,93 @@ interface Project {
   status: string;
 }
 
+interface Props {
+  locale?: "fr" | "en";
+}
+
+const { locale = "fr" } = Astro.props;
+const isEnglish = locale === "en";
+
 const projects: Project[] = [
   {
     title: "Casa Beauty Lab",
-    category: "Site beauté et salon",
+    category: isEnglish ? "Beauty and salon website" : "Site beauté et salon",
     image: "/projects/casa-beauty-lab.webp",
     preview: "https://casabeautylab-casablanca.netlify.app/",
-    status: "Site en ligne vérifié",
+    status: isEnglish ? "Verified live site" : "Site en ligne vérifié",
   },
   {
     title: "Coco Beauty Bar",
-    category: "Site beauté et salon",
+    category: isEnglish ? "Beauty and salon website" : "Site beauté et salon",
     image: "/projects/coco-beauty-bar.webp",
     preview: "https://coco-beauty-bar-casablanca.netlify.app/",
-    status: "Site en ligne",
+    status: isEnglish ? "Live site" : "Site en ligne",
   },
   {
     title: "Viet Garden",
-    category: "Site restaurant et café",
+    category: isEnglish ? "Restaurant and cafe website" : "Site restaurant et café",
     image: "/projects/viet-garden.webp",
     preview: "https://viet-garden.netlify.app/fr",
-    status: "Site en ligne",
+    status: isEnglish ? "Live site" : "Site en ligne",
   },
   {
     title: "Dixvino",
-    category: "Site de vin et d’hospitalité",
+    category: isEnglish ? "Wine and hospitality website" : "Site de vin et d’hospitalité",
     image: "/projects/dixvino.webp",
     preview: "https://dixvino.netlify.app/",
-    status: "Site en ligne",
+    status: isEnglish ? "Live site" : "Site en ligne",
   },
   {
     title: "Furni",
-    category: "Site responsive de mobilier",
+    category: isEnglish ? "Responsive furniture website" : "Site responsive de mobilier",
     image: "/projects/furni.webp",
     link: "https://github.com/Themanonly/furni",
     preview: "https://furni-naoufal.netlify.app/",
-    status: "Site en ligne",
+    status: isEnglish ? "Live site" : "Site en ligne",
   },
   {
     title: "Feane",
-    category: "Site restaurant et café",
+    category: isEnglish ? "Restaurant and cafe website" : "Site restaurant et café",
     image: "/projects/feane.webp",
     preview: "https://feane-naoufal.netlify.app/",
-    status: "Site en ligne",
+    status: isEnglish ? "Live site" : "Site en ligne",
   },
   {
     title: "Tailstore",
-    category: "Site mode et e-commerce",
+    category: isEnglish ? "Fashion and e-commerce website" : "Site mode et e-commerce",
     image: "/projects/tailstore-v2.webp",
     preview: "https://tailstore-naoufal.netlify.app/",
-    status: "Site en ligne",
+    status: isEnglish ? "Live site" : "Site en ligne",
   },
   {
     title: "Sarab",
-    category: "Site restaurant et gastronomie",
+    category: isEnglish ? "Restaurant and dining website" : "Site restaurant et gastronomie",
     image: "/projects/sarab-v2.webp",
     preview: "https://sarab-naoufal.netlify.app/",
-    status: "Site en ligne",
+    status: isEnglish ? "Live site" : "Site en ligne",
   },
   {
     title: "BloomShop",
-    category: "Site e-commerce moderne",
+    category: isEnglish ? "Modern e-commerce website" : "Site e-commerce moderne",
     image: "/projects/bloomshop-v2.webp",
     preview: "https://bloomshop-naoufal-portfolio.netlify.app/",
-    status: "Site en ligne",
+    status: isEnglish ? "Live site" : "Site en ligne",
   },
   {
     title: "Paredes Winery",
-    category: "Site viticole et d’hospitalité",
+    category: isEnglish ? "Winery and hospitality website" : "Site viticole et d’hospitalité",
     image: "/projects/paredes-winery-v2.webp",
     link: "https://github.com/Themanonly/paredes-winery",
     preview: "https://paredes-winery-naoufal.netlify.app/",
-    status: "Site en ligne",
+    status: isEnglish ? "Live site" : "Site en ligne",
   },
   {
     title: "Margarita Fragrance",
-    category: "Site de parfumerie et e-commerce",
+    category: isEnglish ? "Fragrance and e-commerce website" : "Site de parfumerie et e-commerce",
     image: "/projects/margarita-fragrance-v2.webp",
     link: "https://github.com/Themanonly/margarita-fragrance",
     preview: "https://margarita-naoufal.netlify.app/",
-    status: "Site en ligne",
+    status: isEnglish ? "Live site" : "Site en ligne",
   },
 ];
 ---
@@ -99,8 +106,8 @@ const projects: Project[] = [
   class="py-12 border-t border-[#ffffff10] text-[var(--white)]"
 >
   <div class="max-w-5xl mx-auto">
-    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">Mon travail</h2>
-    <h3 class="text-4xl md:text-5xl font-medium mb-8">Projets</h3>
+    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">{isEnglish ? "My work" : "Mon travail"}</h2>
+    <h3 class="text-4xl md:text-5xl font-medium mb-8">{isEnglish ? "Projects" : "Projets"}</h3>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {
@@ -112,7 +119,7 @@ const projects: Project[] = [
                   href={project.preview}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Voir l’aperçu de ${project.title}`}
+                  aria-label={isEnglish ? `View ${project.title} preview` : `Voir l’aperçu de ${project.title}`}
                   class="block aspect-[16/10]"
                 >
                 <img
@@ -179,7 +186,7 @@ const projects: Project[] = [
       aria-label="GitHub"
       class="w-full flex items-center justify-center gap-2 mt-9 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-full bg-[#1414149c] hover:bg-[var(--white-icon-tr)] hover:scale-105"
     >
-      <span class="md:text-lg text-md">Plus de projets sur</span>
+      <span class="md:text-lg text-md">{isEnglish ? "More projects on" : "Plus de projets sur"}</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
