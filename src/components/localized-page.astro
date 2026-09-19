@@ -20,14 +20,14 @@ interface Props {
 const { eyebrow, heading, intro, projectsHeading, contactHeading, contactText, contactLabel, projects } = Astro.props;
 ---
 
-<main id="home" class="max-w-5xl mx-auto py-16 md:py-28 text-[var(--white)]">
+<main id="home" data-section class="max-w-5xl mx-auto py-16 md:py-28 text-[var(--white)]">
   <header class="space-y-5 mb-20">
     <p class="text-[var(--sec)]">{eyebrow}</p>
     <h1 class="text-4xl md:text-6xl font-medium leading-tight">{heading}</h1>
     <p class="max-w-3xl text-lg md:text-2xl text-[var(--white-icon)]">{intro}</p>
   </header>
 
-  <section aria-labelledby="localized-projects" class="border-t border-[#ffffff10] pt-10">
+  <section id="projects" data-section aria-labelledby="localized-projects" class="border-t border-[#ffffff10] pt-10">
     <h2 id="localized-projects" class="text-3xl md:text-4xl font-medium mb-8">{projectsHeading}</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       {projects.map((project) => (
@@ -48,7 +48,7 @@ const { eyebrow, heading, intro, projectsHeading, contactHeading, contactText, c
     </div>
   </section>
 
-  <section aria-labelledby="localized-contact" class="border-t border-[#ffffff10] pt-10 mt-20">
+  <section id="contact" data-section aria-labelledby="localized-contact" class="border-t border-[#ffffff10] pt-10 mt-20">
     <h2 id="localized-contact" class="text-3xl md:text-4xl font-medium mb-4">{contactHeading}</h2>
     <p class="max-w-2xl text-lg text-[var(--white-icon)] mb-6">{contactText}</p>
     <a class="inline-flex rounded-full border border-[var(--white-icon-tr)] px-6 py-3 hover:bg-[var(--white-icon-tr)] transition" href="mailto:naoufalworking@gmail.com">{contactLabel}</a>

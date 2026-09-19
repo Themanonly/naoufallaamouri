@@ -1,5 +1,6 @@
 ---
 const currentYear = new Date().getFullYear();
+const isEnglish = Astro.url.pathname === "/en" || Astro.url.pathname.startsWith("/en/");
 ---
 
 <footer class="w-full py-12 border-t border-[#ffffff10]">
@@ -56,8 +57,21 @@ const currentYear = new Date().getFullYear();
         href="/copyright/"
         class="text-sm text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
       >
-        Droits d’auteur et licence
+        {isEnglish ? "Copyright & licensing" : "Droits d’auteur et licence"}
       </a>
+      <button
+        type="button"
+        class="text-sm text-[var(--white-icon)] hover:text-[var(--white)] transition-colors"
+        data-open-cookie-settings
+      >
+        {isEnglish ? "Cookie settings" : "Paramètres des cookies"}
+      </button>
     </div>
   </div>
 </footer>
+
+<script is:inline>
+  document.querySelectorAll("[data-open-cookie-settings]").forEach((button) => {
+    button.addEventListener("click", () => window.dispatchEvent(new Event("open-cookie-settings")));
+  });
+</script>

@@ -1,4 +1,6 @@
 ---
+import CookieConsent from "@/components/cookie-consent.astro";
+
 interface Props {
   title: string;
   description?: string;
@@ -103,8 +105,63 @@ const locales = [
   </head>
   <body class="bg-[--background] sm:px-28 lg:px-20 px-9">
     <slot />
+    <CookieConsent />
   </body>
 </html>
+
+<script is:inline>
+  const nav = document.getElementById("main-nav");
+  const sections = Array.from(document.querySelectorAll("[data-section]"));
+  const navLinks = Array.from(document.querySelectorAll("[data-nav-link]"));
+  let navFrame = null;
+
+  function updateNavigation() {
+    if (window.scrollY > 0) {
+      nav?.classList.add("scrolling");
+      const progress = Math.min(window.scrollY / 1000, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      const maxWidth = window.innerWidth * 0.8;
+      const currentWidth = maxWidth - (maxWidth - 528) * eased;
+      if (window.innerWidth >= 768) nav?.style.setProperty("width", `${currentWidth}px`);
+    } else {
+      nav?.classList.remove("scrolling");
+      nav?.style.setProperty("width", "80%");
+    }
+
+    if (!sections.length) return;
+    const referenceLine = Math.min(window.innerHeight * 0.36, (nav?.getBoundingClientRect().bottom || 0) + 48);
+    const visibleSection = sections.find((section) => {
+      const bounds = section.getBoundingClientRect();
+      return bounds.top <= referenceLine && bounds.bottom > referenceLine;
+    });
+    const currentSection = visibleSection || sections.reduce((closest, section) => {
+      const distance = Math.abs(section.getBoundingClientRect().top - referenceLine);
+      const closestDistance = Math.abs(closest.getBoundingClientRect().top - referenceLine);
+      return distance < closestDistance ? section : closest;
+    });
+    const activeId = currentSection.getAttribute("id");
+    navLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${activeId}`));
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+      event.preventDefault();
+      const targetId = anchor.getAttribute("href")?.substring(1) || "";
+      document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  window.addEventListener("scroll", () => {
+    if (!navFrame) navFrame = requestAnimationFrame(() => {
+      updateNavigation();
+      navFrame = null;
+    });
+  }, { passive: true });
+  window.addEventListener("resize", updateNavigation);
+  window.addEventListener("hashchange", updateNavigation);
+  updateNavigation();
+  window.setTimeout(updateNavigation, 0);
+</script>
 
 <style is:global>
   @font-face {

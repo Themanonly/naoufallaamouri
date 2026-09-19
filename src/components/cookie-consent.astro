@@ -1,0 +1,257 @@
+---
+const isEnglish = Astro.url.pathname === "/en" || Astro.url.pathname.startsWith("/en/");
+const copy = isEnglish
+  ? {
+      title: "Cookie settings",
+      text: "We use essential cookies to make this site work. Optional preferences and analytics remain off until you choose.",
+      accept: "Accept all",
+      reject: "Reject optional",
+      manage: "Manage preferences",
+      save: "Save choices",
+      essential: "Essential",
+      preferences: "Preferences",
+      analytics: "Analytics",
+      alwaysOn: "Always enabled",
+      optional: "Optional",
+      close: "Close",
+    }
+  : {
+      title: "Paramètres des cookies",
+      text: "Nous utilisons des cookies essentiels au fonctionnement du site. Les préférences et l’analyse restent désactivées jusqu’à votre choix.",
+      accept: "Tout accepter",
+      reject: "Refuser les optionnels",
+      manage: "Gérer les préférences",
+      save: "Enregistrer mes choix",
+      essential: "Essentiels",
+      preferences: "Préférences",
+      analytics: "Analyse",
+      alwaysOn: "Toujours actifs",
+      optional: "Optionnel",
+      close: "Fermer",
+    };
+---
+
+<div id="cookie-consent" class="cookie-consent" hidden>
+  <div class="cookie-consent__panel" role="dialog" aria-modal="false" aria-labelledby="cookie-title">
+    <div>
+      <p id="cookie-title" class="cookie-consent__title">{copy.title}</p>
+      <p class="cookie-consent__text">{copy.text}</p>
+    </div>
+    <div class="cookie-consent__actions">
+      <button type="button" data-cookie-action="accept">{copy.accept}</button>
+      <button type="button" data-cookie-action="reject">{copy.reject}</button>
+      <button type="button" class="cookie-consent__secondary" data-cookie-action="manage">{copy.manage}</button>
+    </div>
+  </div>
+</div>
+
+<div id="cookie-preferences" class="cookie-preferences" hidden>
+  <div class="cookie-preferences__panel" role="dialog" aria-modal="true" aria-labelledby="cookie-preferences-title">
+    <div class="cookie-preferences__header">
+      <p id="cookie-preferences-title" class="cookie-consent__title">{copy.title}</p>
+      <button type="button" class="cookie-preferences__close" data-cookie-action="close" aria-label={copy.close}>×</button>
+    </div>
+    <label class="cookie-preferences__row">
+      <span><strong>{copy.essential}</strong><small>{copy.alwaysOn}</small></span>
+      <input type="checkbox" checked disabled />
+    </label>
+    <label class="cookie-preferences__row">
+      <span><strong>{copy.preferences}</strong><small>{copy.optional}</small></span>
+      <input type="checkbox" data-cookie-option="preferences" />
+    </label>
+    <label class="cookie-preferences__row">
+      <span><strong>{copy.analytics}</strong><small>{copy.optional}</small></span>
+      <input type="checkbox" data-cookie-option="analytics" />
+    </label>
+    <button type="button" class="cookie-preferences__save" data-cookie-action="save">{copy.save}</button>
+  </div>
+</div>
+
+<script is:inline>
+  const consentCookieName = "naoufal_cookie_consent";
+  const consentMaxAge = 60 * 60 * 24 * 180;
+  const consentBanner = document.getElementById("cookie-consent");
+  const preferencesPanel = document.getElementById("cookie-preferences");
+  const preferencesInput = document.querySelector('[data-cookie-option="preferences"]');
+  const analyticsInput = document.querySelector('[data-cookie-option="analytics"]');
+
+  function readConsent() {
+    const value = document.cookie
+      .split("; ")
+      .find((item) => item.startsWith(`${consentCookieName}=`))
+      ?.split("=")[1];
+    if (!value) return null;
+    try {
+      return JSON.parse(decodeURIComponent(value));
+    } catch {
+      return null;
+    }
+  }
+
+  function writeConsent(preferences, analytics) {
+    const value = encodeURIComponent(JSON.stringify({
+      essential: true,
+      preferences: Boolean(preferences),
+      analytics: Boolean(analytics),
+      version: 1,
+      timestamp: new Date().toISOString(),
+    }));
+    document.cookie = `${consentCookieName}=${value}; Max-Age=${consentMaxAge}; Path=/; SameSite=Lax`;
+    consentBanner.hidden = true;
+    preferencesPanel.hidden = true;
+  }
+
+  function openPreferences() {
+    const consent = readConsent();
+    preferencesInput.checked = Boolean(consent?.preferences);
+    analyticsInput.checked = Boolean(consent?.analytics);
+    preferencesPanel.hidden = false;
+  }
+
+  document.querySelectorAll("[data-cookie-action]").forEach((control) => {
+    control.addEventListener("click", () => {
+      const action = control.dataset.cookieAction;
+      if (action === "accept") writeConsent(true, true);
+      if (action === "reject") writeConsent(false, false);
+      if (action === "manage") openPreferences();
+      if (action === "save") writeConsent(preferencesInput.checked, analyticsInput.checked);
+      if (action === "close") preferencesPanel.hidden = true;
+    });
+  });
+
+  const existingConsent = readConsent();
+  if (!existingConsent) consentBanner.hidden = false;
+
+  window.addEventListener("open-cookie-settings", openPreferences);
+</script>
+
+<style>
+  [hidden] {
+    display: none !important;
+  }
+
+  .cookie-consent,
+  .cookie-preferences {
+    position: fixed;
+    inset: auto 1rem 1rem;
+    z-index: 200;
+  }
+
+  .cookie-consent__panel,
+  .cookie-preferences__panel {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 1rem;
+    border: 1px solid var(--white-icon-tr);
+    border-radius: 0.85rem;
+    background: rgba(16, 16, 16, 0.96);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(16px);
+  }
+
+  .cookie-consent__title {
+    color: var(--white);
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .cookie-consent__text {
+    margin-top: 0.35rem;
+    color: var(--white-icon);
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .cookie-consent__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.85rem;
+  }
+
+  .cookie-consent button,
+  .cookie-preferences__save {
+    border: 1px solid var(--white-icon-tr);
+    border-radius: 9999px;
+    padding: 0.5rem 0.75rem;
+    color: var(--white);
+    background: var(--white-icon-tr);
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: background-color 180ms ease, border-color 180ms ease;
+  }
+
+  .cookie-consent button:hover,
+  .cookie-consent button:focus-visible,
+  .cookie-preferences__save:hover,
+  .cookie-preferences__save:focus-visible {
+    border-color: var(--sec);
+    background: rgba(164, 118, 255, 0.24);
+    outline: none;
+  }
+
+  .cookie-consent__secondary {
+    background: transparent !important;
+  }
+
+  .cookie-preferences {
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.42);
+  }
+
+  .cookie-preferences__panel {
+    width: min(100%, 28rem);
+  }
+
+  .cookie-preferences__header,
+  .cookie-preferences__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .cookie-preferences__close {
+    border: 0 !important;
+    padding: 0.1rem 0.35rem !important;
+    background: transparent !important;
+    font-size: 1.25rem !important;
+  }
+
+  .cookie-preferences__row {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--white-icon-tr);
+    color: var(--white);
+  }
+
+  .cookie-preferences__row span {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .cookie-preferences__row small {
+    color: var(--white-icon);
+    font-size: 0.72rem;
+  }
+
+  .cookie-preferences__row input {
+    accent-color: var(--sec);
+  }
+
+  .cookie-preferences__save {
+    width: 100%;
+    margin-top: 1.25rem;
+  }
+
+  @media (max-width: 480px) {
+    .cookie-consent,
+    .cookie-preferences {
+      inset-inline: 0.65rem;
+      bottom: 0.65rem;
+    }
+  }
+</style>
