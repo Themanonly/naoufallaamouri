@@ -1,0 +1,77 @@
+---
+const isEnglish = Astro.url.pathname === "/en" || Astro.url.pathname.startsWith("/en/");
+const frenchHref = "/";
+const englishHref = "/en/";
+---
+
+<nav class="language-switch" aria-label="Language selection">
+  <a
+    href={frenchHref}
+    aria-label="Version francaise"
+    aria-current={!isEnglish ? "page" : undefined}
+    class:list={{ active: !isEnglish }}
+  >FR</a>
+  <a
+    href={englishHref}
+    aria-label="English version"
+    aria-current={isEnglish ? "page" : undefined}
+    class:list={{ active: isEnglish }}
+  >EN</a>
+</nav>
+
+<style>
+  .language-switch {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 110;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.2rem;
+    border: 1px solid var(--white-icon-tr);
+    border-radius: 9999px;
+    background: rgba(243, 243, 243, 0.08);
+    backdrop-filter: blur(14px);
+  }
+
+  .language-switch a {
+    min-width: 2rem;
+    min-height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    color: var(--white-icon);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transition:
+      background-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .language-switch a:hover,
+  .language-switch a:focus-visible {
+    color: var(--white);
+    transform: translateY(-1px);
+  }
+
+  .language-switch a:focus-visible {
+    outline: 2px solid var(--sec);
+    outline-offset: 2px;
+  }
+
+  .language-switch a.active {
+    background: var(--background);
+    color: var(--white);
+  }
+
+  @media (max-width: 767px) {
+    .language-switch {
+      top: 0.75rem;
+      right: 0.75rem;
+    }
+  }
+</style>

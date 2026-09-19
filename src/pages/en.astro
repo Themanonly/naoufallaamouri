@@ -1,0 +1,36 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import LocalizedPage from "@/components/localized-page.astro";
+
+const projects = [
+  { title: "Casa Beauty Lab", category: "Beauty and salon website", preview: "https://casabeautylab-casablanca.netlify.app/" },
+  { title: "Coco Beauty Bar", category: "Beauty and salon website", preview: "https://coco-beauty-bar-casablanca.netlify.app/" },
+  { title: "Viet Garden", category: "Restaurant and cafe website", preview: "https://viet-garden.netlify.app/fr" },
+  { title: "Dixvino", category: "Wine and hospitality website", preview: "https://dixvino.netlify.app/" },
+  { title: "Furni", category: "Furniture e-commerce website", preview: "https://furni-naoufal.netlify.app/" },
+  { title: "Feane", category: "Restaurant and cafe website", preview: "https://feane-naoufal.netlify.app/" },
+  { title: "Tailstore", category: "Fashion and e-commerce website", preview: "https://tailstore-naoufal.netlify.app/" },
+  { title: "Sarab", category: "Restaurant and dining website", preview: "https://sarab-naoufal.netlify.app/" },
+  { title: "BloomShop", category: "Modern e-commerce website", preview: "https://bloomshop-naoufal-portfolio.netlify.app/" },
+  { title: "Paredes Winery", category: "Winery and hospitality website", preview: "https://paredes-winery-naoufal.netlify.app/" },
+  { title: "Margarita Fragrance", category: "Fragrance and e-commerce website", preview: "https://margarita-naoufal.netlify.app/" },
+];
+---
+
+<Layout
+  title="Naoufal Laamouri | Web Designer and Developer in Morocco"
+  description="Naoufal Laamouri creates responsive, professional websites for businesses in Morocco."
+  locale="en"
+  path="/en/"
+>
+  <LocalizedPage
+    eyebrow="Web portfolio in Morocco"
+    heading="Modern website design and development"
+    intro="I design and develop clear, responsive websites for businesses and projects that want a credible online presence."
+    projectsHeading="Selected projects"
+    contactHeading="Let's discuss your project"
+    contactText="Have an idea, service, or business to present online? Get in touch and let's start the conversation."
+    contactLabel="Contact me"
+    projects={projects}
+  />
+</Layout>
