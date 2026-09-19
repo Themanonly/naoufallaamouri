@@ -1,0 +1,31 @@
+---
+interface Props {
+  locale?: "fr" | "en";
+}
+
+const { locale = "fr" } = Astro.props;
+const isEnglish = locale === "en";
+---
+
+<main class="max-w-4xl mx-auto py-20 px-6 text-[var(--white)]">
+  <h1 class="text-4xl md:text-5xl font-medium mb-6">{isEnglish ? "Copyright & Licensing" : "Droits d’auteur et licence"}</h1>
+  <div class="space-y-6 text-[var(--white-icon)] text-lg leading-relaxed">
+    <p>© 2026 Naoufal Laamouri. {isEnglish ? "All rights reserved." : "Tous droits réservés."}</p>
+    <p>{isEnglish ? "This portfolio and its original content, custom code, layout, branding, media, copy, and presentation are the intellectual property of Naoufal Laamouri." : "Ce portfolio et son contenu original, son code personnalisé, sa mise en page, son identité visuelle, ses médias, ses textes et sa présentation sont la propriété intellectuelle de Naoufal Laamouri."}</p>
+    <p>{isEnglish ? "The published project versions presented here are customized and developed by Naoufal Laamouri, and may not be copied, redistributed, republished, resold, sublicensed, or presented as another person's work without written permission." : "Les versions publiées des projets présentés ici sont adaptées et développées par Naoufal Laamouri. Elles ne peuvent être copiées, redistribuées, republiées, revendues, sous-licenciées ou présentées comme le travail d’une autre personne sans autorisation écrite."}</p>
+    <div class="rounded-2xl border border-[var(--white-icon-tr)] bg-[#1414149c] p-6">
+      <h2 class="text-2xl font-medium text-[var(--white)] mb-3">Contact</h2>
+      <ul class="space-y-2">
+        <li>Portfolio: <a class="text-[var(--sec)]" href="https://naoufallaamouri.netlify.app/">https://naoufallaamouri.netlify.app/</a></li>
+        <li>GitHub: <a class="text-[var(--sec)]" href="https://github.com/Themanonly">https://github.com/Themanonly</a></li>
+        <li>LinkedIn: <a class="text-[var(--sec)]" href="https://www.linkedin.com/in/themannaoufallaamouri/">https://www.linkedin.com/in/themannaoufallaamouri/</a></li>
+        <li>{isEnglish ? "Email" : "E-mail"}: <a class="text-[var(--sec)]" href="mailto:naoufalworking@gmail.com">naoufalworking@gmail.com</a></li>
+      </ul>
+    </div>
+    <p>{isEnglish ? "Third-party libraries, templates, frameworks, and assets remain subject to their own license terms where applicable." : "Les bibliothèques, modèles, frameworks et ressources de tiers restent soumis à leurs propres conditions de licence lorsqu’elles s’appliquent."}</p>
+    <div class="rounded-2xl border border-[var(--white-icon-tr)] bg-[#1414149c] p-6">
+      <h2 class="text-2xl font-medium text-[var(--white)] mb-3">{isEnglish ? "Cookie settings" : "Paramètres des cookies"}</h2>
+      <p>{isEnglish ? "Essential cookies support basic site operation. Optional preference cookies remember your choices, and analytics cookies are reserved for a future provider only if you consent. No advertising or marketing cookies are used currently. You can change your choice at any time using the cookie settings link in the footer." : "Les cookies essentiels permettent le fonctionnement de base du site. Les cookies de préférence facultatifs mémorisent vos choix et les cookies analytiques sont réservés à un futur fournisseur, uniquement avec votre consentement. Aucun cookie publicitaire ou marketing n’est utilisé actuellement. Vous pouvez modifier votre choix à tout moment grâce au lien des paramètres des cookies dans le pied de page."}</p>
+    </div>
+  </div>
+</main>

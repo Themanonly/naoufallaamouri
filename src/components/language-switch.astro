@@ -1,7 +1,12 @@
 ---
 const isEnglish = Astro.url.pathname === "/en" || Astro.url.pathname.startsWith("/en/");
-const frenchHref = "/";
-const englishHref = "/en/";
+const isCopyright = Astro.url.pathname === "/copyright/" || Astro.url.pathname === "/en/copyright/";
+const isHome = Astro.url.pathname === "/" || Astro.url.pathname === "/en/" || Astro.url.pathname === "/en";
+const frenchPath = isCopyright ? "/copyright/" : "/";
+const englishPath = isCopyright ? "/en/copyright/" : "/en/";
+const hash = isHome && ["#home", "#projects", "#contact"].includes(Astro.url.hash) ? Astro.url.hash : "";
+const frenchHref = `${frenchPath}${hash}`;
+const englishHref = `${englishPath}${hash}`;
 ---
 
 <nav class="language-switch" aria-label="Language selection">
@@ -18,6 +23,25 @@ const englishHref = "/en/";
     class:list={{ active: isEnglish }}
   >EN</a>
 </nav>
+
+<script is:inline>
+  const languageSwitch = document.querySelector(".language-switch");
+  const syncLanguageHashes = () => {
+    const hash = ["#home", "#projects", "#contact"].includes(window.location.hash)
+      ? window.location.hash
+      : "";
+    languageSwitch?.querySelectorAll("a").forEach((link) => {
+      const url = new URL(link.href, window.location.origin);
+      if (url.pathname === "/" || url.pathname === "/en/") {
+        url.hash = hash;
+        link.href = `${url.pathname}${url.hash}`;
+      }
+    });
+  };
+
+  syncLanguageHashes();
+  window.addEventListener("hashchange", syncLanguageHashes);
+</script>
 
 <style>
   .language-switch {
